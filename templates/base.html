@@ -1,0 +1,55 @@
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        {% block link %}
+        
+        {% endblock %}
+        <link rel="stylesheet" href="{% static 'user_app/css/modal_window.css' %}">
+        <script defer src = "{% static 'user_app/js/modal_window.js' %}"></script>
+        <script defer src = "{% static 'user_app/js/jquery-3.7.1.min.js' %}"></script>
+        <script defer src = "{% static 'user_app/js/avatar_update.js' %}"></script>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <a href = "{% url 'groups' %}">Доступні групи</a>
+                <a href= "{% url 'personal_chats' %}">Доступні персональні чати</a>
+                {% if user.is_authenticated %}
+                <h2>
+                    {{user.username}}
+                    {% if user.profile.avatar %}
+                        <img  id = "avatar" src="{{ user.profile.avatar.url }}" alt="" style="width: 50px;">
+                    {% else %}
+                        <img  id = "avatar" src="{% static 'chat_app/img/default_avatar.png' %}" alt="" style="width: 50px;">
+                    {% endif %}
+                </h2>
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button>Вийти</button>
+                </form>
+                {% else %}
+                    <a href = "{% url 'login' %}">Увійти</a>
+                    <a href = "{% url 'register' %}">Зареєструватись</a>
+                {% endif %}
+            </nav>
+            <hr>
+        </header>
+
+        <div id="modalWindow">
+            <h3>Оновлення аватарки <a id = "cross" href="#">×</a></h3>
+            <form id="formUpdateAvatar" method="post" enctype="multipart/form-data" action = "{% url 'change_avatar' %}">
+                {% csrf_token %}
+                <p><input type="file" name="avatar" required></p>
+                <p><button>Оновити</button></p>
+            </form>
+        </div>
+        {% block content %}
+        
+        {% endblock %}
+            
+
+    </body>
+</html>

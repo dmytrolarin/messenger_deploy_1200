@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block link %}
+    <script defer src = "{% static 'chat_app/js/chat.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <h1>Група "{{ chat_group }}"</h1>
+    <!-- Зберігаємо id групи для того, щоб потім отримати у js -->
+    <input id="groupId" type="hidden" value="{{ chat_group.id }}">
+
+    <h2>Ви увійшли як {{ user.username }}</h2>
+    <!-- Форма для надсилання повідомлення -->
+    <form id = "messageForm" >
+        {{ form.as_p }}
+        <button>Надіслати</button>
+    </form>
+    <!-- Блок для відображення всіх повідомлень -->
+    <div id = "messages">
+        <!-- Проходимось по кожному повідомленню у списку повідомлень -->
+        {% for message in messages %}
+            <!-- Виводимо автора, текст повідомлення та час -->
+            {% if message.author.profile.avatar %}
+                <img src="{{ message.author.profile.avatar.url }}" alt="" style="width: 50px;">
+            {% else %}
+                <img src="{% static 'chat_app/img/default_avatar.png' %}" alt="" style="width: 50px;">
+            {% endif %}
+            
+            <p>{{ message.author.username }}: {{ message.content }} (<span class = "message-time">{{ message.date_time.isoformat }}</span>)</p>
+            <i>Переглядів: {{ message.views.count }}</i>
+            <hr>
+            <br>
+            
+        {% endfor %}
+    </div>
+{% endblock %}
+     
+

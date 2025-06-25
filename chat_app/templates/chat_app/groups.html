@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Усі групи</h1>
+    {% for group in list_groups %}
+        <h2>{{ group.name }}</h2>
+        <a href="{{ group.get_absolute_url }}">Перейти до групи</a>
+        <hr>
+    {% endfor %}
+{% endblock %}
+
