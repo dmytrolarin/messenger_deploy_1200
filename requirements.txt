@@ -29,5 +29,7 @@ txaio==23.1.1
 typing_extensions==4.13.2
 tzdata==2025.2
 uvicorn==0.34.3
+websockets==15.0.1
 whitenoise==6.9.0
+wsproto==1.2.0
 zope.interface==7.2
