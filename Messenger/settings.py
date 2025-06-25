@@ -28,6 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['messengerdeploy1200-production.up.railway.app']
 
+CSRF_TRUSTED_ORIGINS = ['https://messengerdeploy1200-production.up.railway.app']
+
 
 # Application definition
 
