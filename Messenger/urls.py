@@ -25,5 +25,5 @@ urlpatterns = [
     path("user/", include("user_app.urls"))
 ]
 
-if DEBUG:
-    urlpatterns += static(MEDIA_URL, document_root = MEDIA_ROOT)
+# if DEBUG:
+urlpatterns += static(MEDIA_URL, document_root = MEDIA_ROOT)
