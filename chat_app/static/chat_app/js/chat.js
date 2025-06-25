@@ -5,7 +5,7 @@
 // Отримуємо id групи з спеціального тегу
 const groupId = document.getElementById('groupId').value
 // Формуємо URL адресу для WS-з'єднання за поточним хостом
-const SOCKET_URL = `ws://${window.location.host}/chat/${groupId}`
+const SOCKET_URL = `wss://${window.location.host}/chat/${groupId}`
 // Ініціалізуємо WebSocket (Створюємо WS-з'єднання)
 const CHAT_SOCKET = new WebSocket(SOCKET_URL)
 
