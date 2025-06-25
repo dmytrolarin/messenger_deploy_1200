@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-+bcg44@qi=xpl=crp4gh-^hnk$07*1-jsmkjv)jkl#1yb7o8xn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['messengerdeploy1200-production.up.railway.app']
 
 
 # Application definition
