@@ -5,7 +5,6 @@ from channels.generic.websocket import AsyncWebsocketConsumer
 import json
 from .forms import MessageForm
 from channels.db import database_sync_to_async
-from .models import ChatMessage
 import time
 
 
@@ -73,6 +72,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
     @database_sync_to_async
     def save_message(self, message_data):
+        from .models import ChatMessage
         '''
             Опрацьовуємо та зберігаємо повідомлення у базу даних.
             Повертає об'єкт повідомлення для подальшого використання.
